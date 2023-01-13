@@ -33,9 +33,10 @@ class pakegecontroller extends Controller
    
                  if ($email != " " && $password != " ") {
                      if ($count > 0 && Hash::check($password, $data->password)) {
-                         Session::put('user_id', $data->id);
-                         Session::put('studemail', $data->email);
-         
+                        $a= Session::put('user_id', $data->id);
+                        Session::put('name', $data->name);
+                         $ss=Session::put('studemail', $data->email);
+        //  dd($ss);
                          return redirect('index1');
                      } else {
                          return redirect()->back()->with('error', "please enter right EMAIL and PASSWORD");

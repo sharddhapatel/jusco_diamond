@@ -296,14 +296,13 @@ route::get('createJangad', [jobworkcontroller::class, 'createJangad']);
 route::post('insertjangad', [jobworkcontroller::class, 'insertjangad']);
 
 
-
 // **********************************machine***********************************************
 route::get('createmachine', [machinecontroller::class, 'createmachine']);
 route::post('insertmachine', [machinecontroller::class, 'insertmachine']);
 route::get('deletemachine/{id}', [machinecontroller::class, 'deletemachine']);
-// Route::get('changeStatus', [machinecontroller::class, 'changeStatus']);
-Route::get('/status/update',  [machinecontroller::class, 'updateStatus'])->name('users.update.status');
 
+route::get('cronJob', [machinecontroller::class, 'cronJob']);
+Route::get('/status/update', [machinecontroller::class, 'updateStatus']);
 
 // ******************************************chocolate*************************************************************
 route::get('chocolatedashboard', [chocolatecontroller::class, 'chocolatedashboard']);

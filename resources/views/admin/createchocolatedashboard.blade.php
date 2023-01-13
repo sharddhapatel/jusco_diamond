@@ -432,7 +432,7 @@
                                                                 <td>{{ $ans->machineno }}</td>
                                                                 <td>{{ $ans->startdate }}</td>
                                                                 <td>{{ $ans->starttime }}</td>
-                                                                <td><img src="{{url('item_img')}}/{{$ans->image}}"  ></td>
+                                                                <td><img src="{{url('item_img')}}/{{$ans->image}}" style="height:100px; width:100px;"  ></td>
                                                             </tr>
                                                         </tbody>
                                                         @endforeach

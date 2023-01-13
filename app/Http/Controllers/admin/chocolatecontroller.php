@@ -19,25 +19,45 @@ class chocolatecontroller extends Controller
         $data=chocolate::paginate(5);
         return view('admin.createchocolatedashboard')->with(['data'=>$data]);
        }
-       public function insertchocolatedashboard(Request $request)
-       {
-           $chocolate = new chocolate;
-           $chocolate->machineno = $request->get('machinename');
-           $chocolate->startdate = $request->get('sdate');
-           $chocolate->starttime = $request->get('stime');
+    //    public function insertchocolatedashboard(Request $request)
+    //    {
+    //        $chocolate = new chocolate;
+    //        $chocolate->machineno = $request->get('machinename');
+    //        $chocolate->startdate = $request->get('sdate');
+    //        $chocolate->starttime = $request->get('stime');
 
-           if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('item_img', $filename);
-            $chocolate->image = $filename;
-         
-        }
-           $chocolate->save();
+    //        if ($request->hasFile('img')) {
+    //         $file = $request->file('img');
+    //         $extension = $file->getClientOriginalExtension();
+    //         $filename = time() . '.' . $extension;
+    //         $file->move('item_img', $filename);
+    //         $chocolate->image = $filename;
+    
+    //     }
+    //        $chocolate->save();
       
-        return redirect('createchocolatedashboard')->with(['message'=>'Insert chocolate Sucessfull!']);
-       }
+    //     return redirect('createchocolatedashboard')->with(['message'=>'Insert chocolate Sucessfull!']);
+    //    }
+    public function insertchocolatedashboard(Request $request)
+    {
+        $chocolate = new chocolate;
+        $chocolate->machineno = $request->get('machinename');
+        $chocolate->startdate = $request->get('sdate');
+        $chocolate->starttime = $request->get('stime');
+        
+        if ($request->hasFile('img')) {
+         $file = $request->file('img');
+         $extension = $file->getClientOriginalExtension();
+         $filename = time() . '.' . $extension;
+         $file->move('item_img', $filename);
+         $chocolate->image = $filename;
+ 
+     }
+        $chocolate->save();
+   
+     return redirect('createchocolatedashboard')->with(['message'=>'Insert chocolate Sucessfull!']);
+    }
+
     //    public function store(Request $request)
     //    {
     //        $this->validate($request, [
