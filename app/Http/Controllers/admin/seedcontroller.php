@@ -14,6 +14,22 @@ class seedcontroller extends Controller
    
     //     return view('admin.seeds1')->with(['data'=>$data,'sum'=>$sum]);
     //    }
+    public function seedPrint(Request $request,$id){
+        $data=DB::table('packets')
+            ->join('bactches', 'packets.batch_id', '=', 'bactches.id')
+            ->select('packets.*', 'bactches.*')
+            ->where('packets.id',$id)
+            ->first();
+            return view('admin.seedsPrint')->with(['data'=>$data,'random'=>rand(1111111111,9999999999)]);
+    }
+
+    public function multiPrint(Request $request){ 
+            $datas=DB::table('packets')
+                ->join('bactches', 'packets.batch_id', '=', 'bactches.id')
+                ->select('packets.*', 'bactches.*')
+                ->get();
+            return view('admin.multiPrints')->with(['datas'=>$datas,'random'=>rand(1111111111,9999999999)]);
+    }
     public function seeds1(){
         $data=DB::table('bactches')->get();
         $sum=DB::table('packets')->sum('weight');
@@ -65,7 +81,7 @@ class seedcontroller extends Controller
         // track valid student records
         $students = [];
 
-        for ($i=0; $i < $n; $i++) {
+        for ($i=0; $i < $n; $i++) { 
             $data = [
                 'batch_id' => $batch,
                 'pcs' => $pcs,

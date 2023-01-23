@@ -4313,9 +4313,3 @@ i.fa-solid.fa-camera {
     line-height: 1.25;
     border: 1px solid #dee2e6;
 }
-
-@media (max-width: 768px) {
-    .card .card-header {
-        display: flex; justify-content: space-between;
-    }
-}

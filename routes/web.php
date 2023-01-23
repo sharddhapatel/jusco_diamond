@@ -240,6 +240,8 @@ route::get('clickstockdashboardstock', [stockdashbordcontroller::class, 'clickst
 // *********************seeds **************************************
 
 route::get('seeds1', [seedcontroller::class, 'seeds1']);
+route::get('seedPrint/{id}', [seedcontroller::class, 'seedPrint'])->name('seedPrint');
+route::get('multiPrint', [seedcontroller::class, 'multiPrint'])->name('multiPrint');
 route::post('insertseeds', [seedcontroller::class, 'insertseeds']);
 route::get('seedslist', [seedcontroller::class, 'seedslist']);
 
@@ -296,18 +298,20 @@ route::get('createJangad', [jobworkcontroller::class, 'createJangad']);
 route::post('insertjangad', [jobworkcontroller::class, 'insertjangad']);
 
 
+
 // **********************************machine***********************************************
 route::get('createmachine', [machinecontroller::class, 'createmachine']);
 route::post('insertmachine', [machinecontroller::class, 'insertmachine']);
 route::get('deletemachine/{id}', [machinecontroller::class, 'deletemachine']);
+// Route::get('changeStatus', [machinecontroller::class, 'changeStatus']);
+Route::get('/status/update',  [machinecontroller::class, 'updateStatus'])->name('users.update.status');
 
-route::get('cronJob', [machinecontroller::class, 'cronJob']);
-Route::get('/status/update', [machinecontroller::class, 'updateStatus']);
 
 // ******************************************chocolate*************************************************************
 route::get('chocolatedashboard', [chocolatecontroller::class, 'chocolatedashboard']);
 route::get('insertchocolate', [chocolatecontroller::class, 'insertchocolate']);
 route::post('insertchocolatedashboard', [chocolatecontroller::class, 'insertchocolatedashboard']);
+route::post('starttimer', [chocolatecontroller::class, 'startTimer'])->name('startTimer');
 // Route::post('upload', [chocolatecontroller::class, 'store']);
 route::get('createchocolatedashboard', [chocolatecontroller::class, 'createchocolatedashboard']);
 route::get('addchocolate', [chocolatecontroller::class, 'addchocolate']);
@@ -329,6 +333,6 @@ Route::post('/login/submit', 'Backend\Auth\LoginController@login')->name('admin.
 Route::post('/logout/submit', 'Backend\Auth\LoginController@logout')->name('admin.logout.submit');
 
 // Forget Password Routes
-Route::get('/password/reset', 'Backend\Auth\ForgetPasswordController@showLinkRequestForm')->name('admin.password.request');
-Route::post('/password/reset/submit', 'Backend\Auth\ForgetPasswordController@reset')->name('admin.password.update');
+//Route::get('/password/reset', 'Backend\Auth\ForgetPasswordController@showLinkRequestForm')->name('admin.password.request');
+//Route::post('/password/reset/submit', 'Backend\Auth\ForgetPasswordController@reset')->name('admin.password.update');
 });

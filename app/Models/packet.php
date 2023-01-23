@@ -10,6 +10,11 @@ class packet extends Model
     use HasFactory;
     public $table = 'packets';
     protected $fillable = [
-        'batch_id','pcs','shape','height','length','width','weight'
+        'batch_id','pcs','shape','height','length','width','weight','timer','stop_timer'
     ];
+
+    public function batch()
+    {
+        return $this->belongsTo(Bactch::class,'batch_id','id');
+    }
 }
