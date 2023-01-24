@@ -312,6 +312,7 @@ route::get('chocolatedashboard', [chocolatecontroller::class, 'chocolatedashboar
 route::get('insertchocolate', [chocolatecontroller::class, 'insertchocolate']);
 route::post('insertchocolatedashboard', [chocolatecontroller::class, 'insertchocolatedashboard']);
 route::post('starttimer', [chocolatecontroller::class, 'startTimer'])->name('startTimer');
+route::post('stoptimer', [chocolatecontroller::class, 'stopTimer'])->name('stopTimer');
 // Route::post('upload', [chocolatecontroller::class, 'store']);
 route::get('createchocolatedashboard', [chocolatecontroller::class, 'createchocolatedashboard']);
 route::get('addchocolate', [chocolatecontroller::class, 'addchocolate']);

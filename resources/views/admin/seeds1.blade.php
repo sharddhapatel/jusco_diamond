@@ -317,7 +317,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                 </div>
                                 <div class="modal-footer float-left">
@@ -410,7 +410,8 @@
                                                     <div class="question">
                                                      
                                                         <div class="custom-control custom-checkbox  custom-control-right">
-                                                            <input class="coupon_question" type="checkbox" name="chk" >{{$ans->name}}<br>  
+                                                            <input class="coupon_question" type="checkbox" name="checkboxlist[]" value="{{$ans->id}}" />
+                                                           {{$ans->name}}<br>  
                                                         </div>
                                                     
                                                     </div>
@@ -442,7 +443,7 @@
                                     <fieldset class="answer">
                                         <label for="coupon_field">Print:</label>
                                         {{-- <input type="text" name="coupon_field" id="coupon_field"/> --}}
-                                        <a target="_blank" href="{{ route('multiPrint', ['id' => $ans->id]) }}"><i
+                                        <a target="_blank" href="{{ route('multiPrint') }}"><i
                                                 class="fa fa-fw o_button_icon fa-print"></i></a>
                                     </fieldset>
 
@@ -566,6 +567,34 @@
                     $(".answer").hide(200);
                 }
             });
+        </script>
+        <script>
+                $(document).on('click', '.start_button', function () {
+                //console.log(this.id);
+                var id=this.id.replace('start_','');
+
+                var packet_id=$('#packet_id_'+id).val();
+                $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+                });
+                var formData = new FormData();
+                formData.append("id", packet_id);
+                $.ajax({
+                headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                type: "POST",
+                url: "{{ route('startTimer') }}",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function() {
+                //console.log("A");
+                }
+                });
+                });
         </script>
 
 </body>

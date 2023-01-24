@@ -50,6 +50,17 @@ class chocolatecontroller extends Controller
         }
         
        }
+
+       public function stopTimer(Request $request){
+        //dd($request->all(),$request->id);
+        try{
+            packet::where("id",$request->id)->update(['stop_timer'=>Carbon::now()->format('Y-m-d H:i:s')]);
+            
+        }catch(Exception $e){
+
+        }
+        
+       }
     //    public function store(Request $request)
     //    {
     //        $this->validate($request, [

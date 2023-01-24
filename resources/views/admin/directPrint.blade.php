@@ -20,15 +20,17 @@
     </head>
 
     <body onload="window.print()">
-        <div style="font-size:10px;width:100%;padding:2px;min-height:100px">
-                <b>{{ $data->name }}</b><br/>
+        @foreach ($students as $stu)
+            
+            <div style="font-size:10px;width:100%;padding:2px;min-height:100px">
+                <b>{{ $user->name }}</b><br/>
                     {{-- <span style="float:right">Pcs: {{ $data->pcs }}</span></b><br> --}}
-                <b>L x W : {{ $data->length }} x {{ $data->width }}</b><br>
-                Height : {{ $data->height }}<br>
-                weight : {{ $data->weight }}<br>
+                <b>L x W : {{ $stu['length'] }} x {{ $stu['width'] }}</b><br>
+                Height : {{ $stu['height'] }}<br>
+                weight : {{ $stu['weight'] }}<br>
                 Date : {{ date('d/m/Y') }}<br>
-                <span style="float:right;margin-top:-70px;margin-right:5px">{!! DNS2D::getBarcodeSVG("$data->name", 'QRCODE') !!}</span>
-        </div>
-       
-    </body>
+                <span style="float:right;margin-top:-70px;margin-right:5px">{!! DNS2D::getBarcodeSVG("$user->name", 'QRCODE') !!}</span>
+            </div>    
+        @endforeach
+     </body>
 </html>

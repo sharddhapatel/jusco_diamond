@@ -28,7 +28,6 @@
                 Height : {{ $data->height }}<br>
                 weight : {{ $data->weight }}<br>
                 Date : {{ date('d/m/Y') }}<br>
-                <b>Pcs: {{ $data->pcs }}</b>
                 <span style="float:right;margin-top:-70px;margin-right:5px">{!! DNS2D::getBarcodeSVG("$data->name", 'QRCODE') !!}</span>
             </div>    
         @endforeach
