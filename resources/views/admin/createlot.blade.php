@@ -151,7 +151,7 @@
                     href="{{ url('createlot') }}">Batch</a></strong>
             <ul class="stockul">
                 <li class="stockli mt-2"><a href="{{ url('createlot') }}">Batch</a></li>
-                {{-- <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li> --}}
+                <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li>
                 <li class="stockli nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="card-body card-block">
-                                            <form action="#" method="post" enctype="multipart/form-data"
+                                            <form action="{{ url('search_shape') }}" method="post" enctype="multipart/form-data"
                                                 class="form-horizontal">
                                                 <div class="row form-group">
                                                     <div class="col col-md-3"></div>
@@ -419,7 +419,7 @@
                             </div>
                         </div>
 
-                        <div class="stockli nav-item dropdown">
+                        {{-- <div class="stockli nav-item dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
@@ -442,10 +442,10 @@
                                 </select> 
                                 --}}
                                         {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
-                                    </div>
+                                    {{-- </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}} 
 
                         {{-- <li class="stockli nav-item dropdown favorite">
                             <a href="#" class="nav-link favorite-btn">

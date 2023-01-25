@@ -34,7 +34,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{URL:: asset('admin/assets/css/paginate.css')}}">
     <style type="text/css">
         .sub-filter .subfilter-drop {
             left: 100% !important;
@@ -336,195 +336,39 @@
                          </div>
                     </div>
                     <div class="col-md-7">
-                        <li class="stockli nav-item dropdown filter">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="fa-solid fa-filter"></i>
+                                Filter
+                            </button>
+                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                                <form action="{{ url('search_color') }}" name="search" method="get">
+                                    <div class="search_multiple">
+                                        <select class="form__input" id="search" name="datesearch"
+                                            onchange="form.submit();">
+                                            <option selected disabled>SearchDate..</option>
+                                            <option value="today">Today</option>
+                                            <option value="yesterday">Yesterday</option>
+                                            <option value="last7days">Last 7 Days</option>
+                                            <option value="last15days">Last 15 Days</option>
+                                            <option value="lastmonth">Lastmonth</option>
+                                            <option value="lastyear">Lastyear</option>
+                                            <option value="thismonth">ThisMonth</option>
+                                        </select>
+                                        <select class="form__input" name="colorn" id="search"
+                                            onchange="form.submit();">
+                                            <option selected disabled>selectName.</option>
+                                            @foreach ($data as $ans)
+                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                            @endforeach
+                                        </select>
 
-                            <a href="#" class="nav-link filter-btn">
-                                <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a>
-                            <ul class="dropdown-menu filter-sub" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Confirmed Batch</a></li>
-                                <li class="stockli dropdown-submenu sub-filter">
-                                    <div class="btn-group dropright">
-
-                                        <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Add Custom Filter
-                                        </a>
-                                        <div class="dropdown-menu subfilter-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="filterul">
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-md-12 ">
-                                                                <select class="custom-select d-block w-100" required="">
-                                                                  <option value="">Action Needed....</option>
-                                                                  <option>SQ</option>
-                                                                  <option>Option #2</option>
-                                                                  <option>Option #3</option></select>
-                                                            </div>
-
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select class="custom-select d-block w-100" required="">
-                                                        <option>Is true</option>
-                                                        <option>SQ</option>
-                                                        <option>Option #2</option>
-                                                        <option>Option #3</option>
-                                                    </select>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Apply</button>
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Add a condition</button>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="stockli nav-item dropdown group">
-                            <a href="#" class="nav-link group-btn">
-                                <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-keyboard"></i> Group By</button></a>
-                            <ul class="dropdown-menu group-sub" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">State</a></li>
-                                <li class="stockli dropdown-submenu sub-group">
-                                    <div class="btn-group dropright">
-
-                                        <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Start Date
-                                        </a>
-                                        <div class="dropdown-menu subgroup-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="groupul">
-                                                <li class="groupli">Year</li>
-                                                <li class="groupli">Quarter</li>
-                                                <li class="groupli">Month</li>
-                                                <li class="groupli">Week</li>
-                                                <li class="groupli">Day</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="stockli dropdown-submenu sub-group">
-                                    <div class="btn-group dropright">
-
-                                        <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        End Date
-                                        </a>
-                                        <div class="dropdown-menu subgroup-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="groupul">
-                                                <li class="groupli">Year</li>
-                                                <li class="groupli">Quarter</li>
-                                                <li class="groupli">Month</li>
-                                                <li class="groupli">Week</li>
-                                                <li class="groupli">Day</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="stockli dropdown-submenu sub-group">
-                                    <div class="btn-group dropright">
-                                        <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Add Custom Filter
-                                            </a>
-                                        <div class="dropdown-menu subgroup-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="groupul">
-                                                <li class="groupli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                    <option value="0">Action Needed....</option>
-                                                                    <option value="1">SQ</option>
-                                                                    <option value="2">Option #2</option>
-                                                                    <option value="3">Option #3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="groupli">
-                                                    <a tabindex="-1" href="#">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Apply</button>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="stockli nav-item dropdown favorite">
-                            <a href="#" class="nav-link favorite-btn">
-                                <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-star"></i> Favorites</button></a>
-                            <ul class="dropdown-menu favorite-sub" aria-labelledby="navbarDropdown">
-                                <li class="stockli dropdown-submenu sub-favorite">
-                                    <div class="btn-group dropright">
-
-                                        <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Save current Search
-                                        </a>
-                                        <div class="dropdown-menu subfavorite-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="favoriteul">
-                                                <li class="favoriteli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select name="select" id="select" class="form-control">
-                                                                <option value="0">Action Needed....</option>
-                                                                <option value="1">SQ</option>
-                                                                <option value="2">Option #2</option>
-                                                                <option value="3">Option #3</option>
-                                                            </select>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="favoriteli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="form-check">
-                                                            <div class="checkbox">
-                                                                <label for="checkbox1" class="form-check-label ">
-                                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Use By Default
-                                                        </label>
-                                                            </div>
-                                                            <div class="checkbox">
-                                                                <label for="checkbox2" class="form-check-label ">
-                                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input">Share with all users
-                                                        </label>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="favoriteli">
-                                                    <a tabindex="-1" href="#">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">save</button>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Import Records</a></li>
-                            </ul>
-                        </li>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -547,8 +391,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $color = App\Models\color::get(); ?>
-@foreach($color as $ans)
+                                    
+@foreach($data as $ans)
                                         <tr>
                                            <td>{{ $loop->iteration }}</td>
                                              <td> 
@@ -562,6 +406,7 @@
                                     
                                     </tbody>
                                 </table>
+                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $data->links()  !!}</div>      
                             </div>
                         </div>
                     </div>

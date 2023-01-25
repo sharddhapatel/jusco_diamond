@@ -134,7 +134,7 @@
 
             <ul class="stockul">
                 <li class="stockli mt-2"><a href="{{ url('createlot') }}">Batch</a></li>
-                {{-- <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li> --}}
+                <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li>
                 <li class="stockli nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Configuration

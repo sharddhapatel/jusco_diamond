@@ -208,6 +208,9 @@ route::get('demo', [pakegecontroller::class, 'demo']);
 route::get('search_seed',[batchcontroller::class,'searchseed']);
 route::get('search_date',[batchcontroller::class,'searchdate']);
 route::get('search',[batchcontroller::class,'search']);
+route::get('search_shape',[batchcontroller::class,'searchshape']);
+route::get('search_color',[batchcontroller::class,'searchcolor']);
+
 route::get('batch1', [batchcontroller::class, 'batch1']);
 route::post('insertbatch', [batchcontroller::class, 'insertbatch']);
 route::get('shape', [batchcontroller::class, 'shape']);

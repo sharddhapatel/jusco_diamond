@@ -104,6 +104,78 @@ class batchcontroller extends Controller
         }
         return redirect('getbatch/{id}')->with(['data' => $data]);
     }
+    public function searchshape(Request $request)
+    {
+        $requestData = ['id','name','status'];
+        $date = $request->all();
+      
+        $pro= $request->input('shapn');
+        $search = $request->input('datesearch');
+    //    dd($search);
+       
+     
+        if ($search == "lastmonth") {
+            $data = DB::table('shaps')->whereMonth('created_at', '=', Carbon::now()->subMonth(1))->paginate(10);
+        } elseif ($search == "last7days") {
+            $data = DB::table('shaps')->where('created_at', '>=', Carbon::now()->subDays(7))->paginate(10);
+        } elseif ($search == "last15days") {
+            $data = DB::table('shaps')->where('created_at', '>=', Carbon::now()->subdays(15))->paginate(10);
+        } elseif ($search  == "lastyear") {
+            $data = DB::table('shaps')->whereYear('created_at', date('Y', strtotime('-1 year')))->paginate(10);
+        } elseif ($search == "today") {
+
+            $data = DB::table('shaps')->whereDate('created_at', Carbon::today())->paginate(10);
+            // dd($search);
+        } elseif ($search == "yesterday") {
+            $data = DB::table('shaps')->whereDate('created_at', '=', Carbon::yesterday())->paginate(10);
+        } elseif ($search == "thismonth") {
+            $data = DB::table('shaps')->whereMonth('created_at', Carbon::now()->month)->paginate(10);
+        } 
+        elseif ($request->shapn) {
+            $data = DB::table('shaps')->where('name', "like", "%" . $pro . "%")->paginate(10);
+        } 
+
+        else {
+            $data = DB::table('shaps')->paginate(10);
+        }
+        return view('admin.shape')->with(['data' => $data,'pro'=>$pro]);
+    }
+    public function searchcolor(Request $request)
+    {
+        $requestData = ['id','name','status'];
+        $date = $request->all();
+      
+        $pro= $request->input('colorn');
+        $search = $request->input('datesearch');
+    //    dd($search);
+       
+     
+        if ($search == "lastmonth") {
+            $data = DB::table('colors')->whereMonth('created_at', '=', Carbon::now()->subMonth(1))->paginate(10);
+        } elseif ($search == "last7days") {
+            $data = DB::table('colors')->where('created_at', '>=', Carbon::now()->subDays(7))->paginate(10);
+        } elseif ($search == "last15days") {
+            $data = DB::table('colors')->where('created_at', '>=', Carbon::now()->subdays(15))->paginate(10);
+        } elseif ($search  == "lastyear") {
+            $data = DB::table('colors')->whereYear('created_at', date('Y', strtotime('-1 year')))->paginate(10);
+        } elseif ($search == "today") {
+
+            $data = DB::table('colors')->whereDate('created_at', Carbon::today())->paginate(10);
+            // dd($search);
+        } elseif ($search == "yesterday") {
+            $data = DB::table('colors')->whereDate('created_at', '=', Carbon::yesterday())->paginate(10);
+        } elseif ($search == "thismonth") {
+            $data = DB::table('colors')->whereMonth('created_at', Carbon::now()->month)->paginate(10);
+        } 
+        elseif ($request->shapn) {
+            $data = DB::table('colors')->where('name', "like", "%" . $pro . "%")->paginate(10);
+        } 
+
+        else {
+            $data = DB::table('colors')->paginate(10);
+        }
+        return view('admin.color')->with(['data' => $data,'pro'=>$pro]);
+    }
     public function createlot(Request $request)
     {
         $requestData = ['id','name'];
@@ -151,8 +223,9 @@ class batchcontroller extends Controller
         $requestData = ['id', 'name','status'];
         $pro = $request->input('shapename');
         $data = DB::table('shaps')
-       
-        ->where('name', "like", "%" . $request->shapename. "%")->paginate(10);
+    ->where('name', "like", "%" . $request->shapename. "%")->paginate(10);
+
+    
     //   dd($pro);
         return view('admin.shape')->with(['pro'=>$pro,'data'=>$data]);
        }
@@ -218,8 +291,12 @@ class batchcontroller extends Controller
            $data = DB::table('finishtypes')->where('id', $id)->delete();
            return redirect()->back()->with('message', 'delete succesfully');
        }
-       public function color(){
-        return view('admin.color');
+       public function color(Request $request){
+        $requestData = ['id', 'name','status'];
+       
+        $data = DB::table('colors')
+    ->paginate(10);
+        return view('admin.color')->with(['data'=>$data]);
        }
        public function insertcolor(Request $request)
        {

@@ -372,7 +372,7 @@
                                             <option value="lastyear">Lastyear</option>
                                             <option value="thismonth">ThisMonth</option>
                                         </select>
-                                        <select class="form__input" name="batch" id="search"
+                                        <select class="form__input" name="shapn" id="search"
                                             onchange="form.submit();">
                                             <option selected disabled>selectName.</option>
                                             @foreach ($data as $ans)
@@ -462,7 +462,7 @@
                                 </li>
                             </ul>
                         </li> --}}
-                        <li class="stockli nav-item dropdown favorite">
+                        {{-- <li class="stockli nav-item dropdown favorite">
                             <a href="#" class="nav-link favorite-btn">
                                 <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-star"></i> Favorites</button></a>
                             <ul class="dropdown-menu favorite-sub" aria-labelledby="navbarDropdown">
@@ -517,7 +517,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#">Import Records</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </div>
                 </div>
             </div>
@@ -552,7 +552,7 @@
                                     </thead>
                                     <tbody>
                                         {{-- <?php $shap = App\Models\shap::get(); ?> --}}
-@foreach($data as $ans)
+                                        @foreach($data as $ans)
                                         <tr>
                                            <td>{{ $loop->iteration}}</td>
                                              <td> 
@@ -562,25 +562,15 @@
                                             <td> 
                                                 <button type="submit" class="btn btn-outline-secondary mt-1"><a href="shaperemove/{{ $ans->id}}"> Remove </a></button>
                                             </td>
-                                          
                                         </tr>
                                         @endforeach
                                       
                                     </tbody>
-                                   
-                                    
-                                </table>
-                           
-                            
-                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $data->links()  !!}</div>
-                                     
+                                </table>                           
+                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $data->links()  !!}</div>                                    
                             </div>
-                           
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

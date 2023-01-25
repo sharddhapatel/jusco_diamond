@@ -74,13 +74,13 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        {{-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -161,16 +161,16 @@
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-4 float-left">
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> <i class="fa-solid fa-download"></i> </button></a>
+                        {{-- <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> <i class="fa-solid fa-download"></i> </button></a> --}}
                     </div>
                     <div class="col-md-7">
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                            {{-- <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"><i class="fa-solid fa-filter"></i>
                                 Filter
-                            </button>
-                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                            </button> --}}
+                            {{-- <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
                                 <form action="{{ url('search_seed') }}" name="search" method="get">
                                     <div class="search_multiple">
                                         <select class="form__input" id="search" name="datesearch"
@@ -193,17 +193,17 @@
                                         </select> --}}
 
                                         {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
-                                    </div>
+                                    {{-- </div>
                                 </form>
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-keyboard"></i> Group By</button></a>
                         <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-star"></i> Favorites</button></a> --}}
                     </div>
-                    <div class="col-md-1 float-right">
+                    {{-- <div class="col-md-1 float-right">
                         <a href="{{ url('seeds1') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-list"></i></button></a>
-                        {{-- <a href="{{ url('seedslist') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-arrows-to-dot"></i></button></a> --}}
-                    </div>
+                        <a href="{{ url('seedslist') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-arrows-to-dot"></i></button></a>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -223,12 +223,14 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Name</th>
+                                            <th>
+                                                {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> --}}
+                                                 Name</th>
                                             <th>Height(Micron)</th>
                                             <th>Length(MM)</th>
                                             <th>Width(MM)</th>
                                             <th>Weight(Ct)</th>
-                                            <th>Print</th>
+                                            {{-- <th>Print</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -237,8 +239,11 @@
                                         @foreach ($pdata as $ans)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">{{$ans->name}} </label>
+                                            <td>
+                                                 {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> --}} 
+                                                {{-- <label class="form-check-label" for="flexCheckDefault"> --}}
+                                                   {{$ans->name}} 
+                                                {{-- </label> --}} 
                                             </td>
                                             <td>{{$ans->height}}</td>
                                             <td>{{$ans->length}}</td>
@@ -247,7 +252,7 @@
                                             <td>{{$ans->weight}}
                                                 {{-- <i class="fa-solid fa-receipt"></i> --}}
                                             </td>
-                                            <td> <button type="button" name="print_packet_label" title="Print Label" context="{'print_from_batch': True}" class="btn btn-link o_icon_button"><i class="fa fa-fw o_button_icon fa-print"></i></button></td>
+                                            {{-- <td> <button type="button" name="print_packet_label" title="Print Label" context="{'print_from_batch': True}" class="btn btn-link o_icon_button"><i class="fa fa-fw o_button_icon fa-print"></i></button></td> --}}
                                         </tr>
                                         @endforeach
                           
