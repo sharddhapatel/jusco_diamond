@@ -70,19 +70,20 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{ url('centerdepartment') }}"><span>Batch</span></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    {{-- <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> --}}
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        {{-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <form class="search-form" method="get" >
+                                {{ csrf_field()}}
+                                <input class="form-control mr-sm-2" name="shapename" value="{{ $shap }}" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -345,63 +346,46 @@
                         </div>
                         
                     <div class="col-md-7">
-                        <li class="stockli nav-item dropdown filter">
+                        {{-- <li class="stockli nav-item dropdown filter">
 
                             <a href="#" class="nav-link filter-btn">
                                 <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a>
-                            <ul class="dropdown-menu filter-sub" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Confirmed Batch</a></li>
-                                <li class="stockli dropdown-submenu sub-filter">
-                                    <div class="btn-group dropright">
+                            
+                        </li> --}}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="fa-solid fa-filter"></i>
+                                Filter
+                            </button>
+                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                                <form action="{{ url('search_shape') }}" name="search" method="get">
+                                    <div class="search_multiple">
+                                        <select class="form__input" id="search" name="datesearch"
+                                            onchange="form.submit();">
+                                            <option selected disabled>SearchDate..</option>
+                                            <option value="today">Today</option>
+                                            <option value="yesterday">Yesterday</option>
+                                            <option value="last7days">Last 7 Days</option>
+                                            <option value="last15days">Last 15 Days</option>
+                                            <option value="lastmonth">Lastmonth</option>
+                                            <option value="lastyear">Lastyear</option>
+                                            <option value="thismonth">ThisMonth</option>
+                                        </select>
+                                        <select class="form__input" name="batch" id="search"
+                                            onchange="form.submit();">
+                                            <option selected disabled>selectName.</option>
+                                            @foreach ($data as $ans)
+                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                            @endforeach
+                                        </select>
 
-                                        <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Add Custom Filter
-                                        </a>
-                                        <div class="dropdown-menu subfilter-drop">
-                                            <!-- Dropdown menu links -->
-                                            <ul class="filterul">
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-md-12 ">
-                                                                <select class="custom-select d-block w-100" required="">
-                                                                  <option value="">Action Needed....</option>
-                                                                  <option>SQ</option>
-                                                                  <option>Option #2</option>
-                                                                  <option>Option #3</option></select>
-                                                            </div>
-
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <div class="row form-group">
-                                                            <div class="col-12 col-md-12">
-                                                                <select class="custom-select d-block w-100" required="">
-                                                        <option>Is true</option>
-                                                        <option>SQ</option>
-                                                        <option>Option #2</option>
-                                                        <option>Option #3</option>
-                                                    </select>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="filterli">
-                                                    <a tabindex="-1" href="#">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Apply</button>
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Add a condition</button>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="stockli nav-item dropdown group">
+                                </form>
+                            </div>
+                        </div>
+                        {{-- <li class="stockli nav-item dropdown group">
                             <a href="#" class="nav-link group-btn">
                                 <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-keyboard"></i> Group By</button></a>
                             <ul class="dropdown-menu group-sub" aria-labelledby="navbarDropdown">
@@ -477,7 +461,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="stockli nav-item dropdown favorite">
                             <a href="#" class="nav-link favorite-btn">
                                 <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-star"></i> Favorites</button></a>
@@ -538,15 +522,25 @@
                 </div>
             </div>
         </div>
-
+    
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row" >
 
                     <div class="col-md-12">
                         <div class="card">
-
+                            
                             <div class="card-body">
+                     
+                                <form class="form-horizontal" action="" method="get">
+                                    <div style="float: left;">
+                                        {{ csrf_field() }}
+                                        <b><label>Search:</label></b> &nbsp;
+                                        <input type="text" name="shapename" id="search" value="{{$pro}}"  onchange="form.submit();" placeholder="Search">
+            
+                                    </div>
+            
+                                </form>
                                 <table   class="table table-striped table-bordered">
                                     {{-- <table id="example" class="display" style="width:100%"> --}}
                                     <thead>
@@ -558,7 +552,7 @@
                                     </thead>
                                     <tbody>
                                         {{-- <?php $shap = App\Models\shap::get(); ?> --}}
-@foreach($page as $ans)
+@foreach($data as $ans)
                                         <tr>
                                            <td>{{ $loop->iteration}}</td>
                                              <td> 
@@ -578,7 +572,7 @@
                                 </table>
                            
                             
-                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $page->links()  !!}</div>
+                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $data->links()  !!}</div>
                                      
                             </div>
                            
@@ -664,7 +658,11 @@
                 });
             });
         </script>
-
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('search').selectpicker();
+            });
+        </script>
 </body>
 
 </html>

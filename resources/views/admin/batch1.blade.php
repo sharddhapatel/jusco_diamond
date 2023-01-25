@@ -47,19 +47,19 @@
                 <div class="navbar-header">
                     <!-- <a class="navbar-brand" href="index-2.html"><img src="images/logo.png" alt="Logo"></a> -->
                     <a class="navbar-brand" href="{{ url('centerdepartment') }}"><span>Batch</span></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    {{-- <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> --}}
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        {{-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +129,7 @@
 
             <ul class="stockul">
                 <li class="stockli mt-2"><a href="{{ url('createlot') }}">Batch</a></li>
-                <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li>
+                {{-- <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li> --}}
                 <li class="stockli nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Configuration
@@ -295,7 +295,7 @@
                     <div class="col-lg-8 mt-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4> <i class="fa-solid fa-pen-to-square"></i> Packets </h4>
+                                <h4> <i class="fa-solid fa-pen-to-square"></i> Batch </h4>
                             </div>
                             <div class="card-body">
                                 <form action={{ url('insertbatch') }} method="post" enctype="multipart/form-data">
@@ -308,7 +308,7 @@
                                     <a href=""><button type="submit" class="btn btn-outline-secondary mt-1"> Save </button></a>
                                 </div>
                             </form>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-lg-6">
                                         <div class="card-body card-block">
                                             <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -392,7 +392,7 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -402,7 +402,7 @@
         </div>
         <!-- /header -->
         <!-- Header-->
-        <div class="breadcrumbs">
+        {{-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-md-2"></div>
@@ -491,7 +491,7 @@
 
             </div>
 
-        </div>
+        </div> --}}
         <!-- /#right-panel -->
 
         <!-- Right Panel -->

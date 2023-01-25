@@ -34,7 +34,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{URL:: asset('admin/assets/css/paginate.css')}}">
 </head>
 
 <body>
@@ -57,9 +57,9 @@
                     <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
-                            <form class="search-form" method="get" name="search">
+                            <form class="search-form" method="get" >
                                 {{ csrf_field()}}
-                                <input class="form-control mr-sm-2" name="search" value="{{ $pro }}" type="text" placeholder="Search ..." aria-label="Search">
+                                <input class="form-control mr-sm-2" name="seed" value="{{ $pro }}" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
                         </div>
@@ -134,7 +134,7 @@
 
             <ul class="stockul">
                 <li class="stockli mt-2"><a href="{{ url('createlot') }}">Batch</a></li>
-                <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li>
+                {{-- <li class="stockli"><a class=" mt-1" data-bs-toggle="modal" data-bs-target="#addpacketsModal">Create Lots</a></li> --}}
                 <li class="stockli nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Configuration
@@ -299,15 +299,18 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> Print Labels </button></a>
-                                <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> Split/Merge Lot </button></a>
+                                {{-- <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> Print Labels </button></a>
+                                <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> Split/Merge Lot </button></a> --}}
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                        
-                                            <th><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Name</th>
+                                            <th >
+                                                <div class="check" style="padding-left: 20px;">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  > Name
+                                                    </div></th>
                                             <th>Pcs</th>
                                             <th>Weight(Ct)</th>
                                             <th>Length</th>
@@ -319,13 +322,16 @@
                                     </thead>
                                     <tbody>
                                         <?php $data=App\Models\packet::get(); ?>
-                                        @foreach($data as $ans)
+                                        @foreach($samedata as $ans)
                                         <tr>
                                            
-                                            <td> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <td> 
+                                                <div class="check" style="padding-left: 20px;">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
-                                                 {{$ans->batch}}
+                                                 {{$ans->name}}
                                                 </label>
+                                                    </div>
                                             </td>
                                             <td>{{$ans->pcs}}</td>
                                             <td>{{$ans->weight}}</td>
@@ -337,7 +343,9 @@
                                         </tr>
                                   @endforeach
                                     </tbody>
+
                                 </table>
+                                <div class="paginate" style="display: flex;padding-bottom: 20px;">{!! $samedata->links()  !!}</div>
                             </div>
                         </div>
                     </div>

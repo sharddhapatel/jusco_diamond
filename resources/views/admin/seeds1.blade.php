@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="{{URL:: asset('admin/assets/css/paginate.css')}}">
     <style>
         .navbar-nav li:hover>ul.dropdown-menu {
             display: block;
@@ -387,8 +387,10 @@
                                         <tr>
                                             <th>#</th>
 
+                                   
                                             <th> 
                                                 <div class="question" style="padding-left: 20px;">
+                                                   
                                                 <input class="coupon_question" type="checkbox" onclick='selects()' value="Select All"/>Select All 
                                                 <input class="coupon_question" type="checkbox" onclick='deSelect()' value="Deselect All"/> Deselect All
                                             </div>
@@ -406,12 +408,13 @@
                                         @foreach ($samedata as $ans)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td> 
+                                  
+                                                  <td> 
                                                     <div class="question">
                                                      
                                                         <div class="custom-control custom-checkbox  custom-control-right">
-                                                            <input class="coupon_question" type="checkbox" name="checkboxlist[]" value="{{$ans->id}}" />
-                                                           {{$ans->name}}<br>  
+                                                         
+                                                            <input class="coupon_question" type="checkbox" name="chk" >{{$ans->name}}<br>  
                                                         </div>
                                                     
                                                     </div>
