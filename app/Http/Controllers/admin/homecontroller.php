@@ -184,9 +184,7 @@ class homecontroller extends Controller
      public function machineequipments(){
       return view('admin.machineequipments');
      }
-     public function machine(){
-      return view('admin.machine');
-     }
+
      public function lotslist(){
       return view('admin.lotslist');
      }

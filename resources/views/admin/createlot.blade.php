@@ -350,8 +350,8 @@
                     <div class="col-md-7 d-flex">
                         {{-- <li class="stockli nav-item dropdown filter">
 
-    <a href="#" class="nav-link filter-btn">
-        <button type="submit" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a> --}}
+                            <a href="#" class="nav-link filter-btn">
+                                <button type="submit" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a> --}}
 
 
                         <div class="dropdown">

@@ -49,19 +49,19 @@
                 <div class="navbar-header">
                     <!-- <a class="navbar-brand" href="index-2.html"><img src="images/logo.png" alt="Logo"></a> -->
                     <a class="navbar-brand" href="{{ url('centerdepartment') }}"><span>Machine Management</span></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    {{-- <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> --}}
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        {{-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -157,27 +157,42 @@
                         </a>
                     </div>
                     <div class="col-md-7">
-                        <li class="stockli nav-item dropdown">
-                            <a href="#" class="nav-link " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a>
-                            <ul class="dropdown-menu mt6" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Confirmed Batch</a></li>
-                                <li class="stockli dropdown-submenu"><a href="#" class="dropdown-toggle" tabindex="-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add Custom Filter</a>
-                                    <ul class="dropdown-menu" id="submenu" aria-labelledby="navbarDropdown">
-                                        <li><a tabindex="-1" href="#">Second level link</a></li>
-                                        <li><a tabindex="-1" href="#">Second level link</a></li>
-                                        <li><a tabindex="-1" href="#">Second level link</a></li>
-                                        <li><a tabindex="-1" href="#">Second level link</a></li>
-                                        <li><a tabindex="-1" href="#">Second level link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-keyboard"></i> Group By</button></a>
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-star"></i> Favorites</button></a>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="fa-solid fa-filter"></i>
+                                Filter
+                            </button>
+                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                                <form action="{{ url('search_machine') }}"  method="get">
+                                    <div class="search_multiple">
+                                        <select class="form__input" id="search" name="datesearch"
+                                            onchange="form.submit();">
+                                            <option selected disabled>SearchDate..</option>
+                                            <option value="today">Today</option>
+                                            <option value="yesterday">Yesterday</option>
+                                            <option value="last7days">Last 7 Days</option>
+                                            <option value="last15days">Last 15 Days</option>
+                                            <option value="lastmonth">Lastmonth</option>
+                                            <option value="lastyear">Lastyear</option>
+                                            <option value="thismonth">ThisMonth</option>
+                                        </select>
+                                        {{-- <select class="form__input" name="seed" id="search"
+                                            onchange="form.submit();">
+                                            <option selected disabled>selectName.</option>
+                                            @foreach ($data as $ans)
+                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                            @endforeach
+                                        </select> --}}
+
+                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-1 float-right">
-                        <a href="{{ url('machine') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-arrows-to-dot"></i></button></a>
+                        {{-- <a href="{{ url('machine') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-arrows-to-dot"></i></button></a> --}}
                         <a href="{{ url('machinelist') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-list"></i></button></a>
                     </div>
                 </div>
@@ -188,7 +203,7 @@
 
 
                 <div class="row">
-                    <?php $data=App\Models\machine::get();?>
+                    {{-- <?php $data=App\Models\machine::get();?> --}}
                     @foreach($data as $ans)
                     <div class="col-lg-3">
                         <div class="card">

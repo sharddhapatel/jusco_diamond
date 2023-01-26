@@ -133,7 +133,6 @@ route::get('locationlist', [homecontroller::class, 'locationlist']);
 route::get('machinelaser', [homecontroller::class, 'machinelaser']);
 route::get('machineequipmentslist', [homecontroller::class, 'machineequipmentslist']);
 route::get('machineequipments', [homecontroller::class, 'machineequipments']);
-route::get('machine', [homecontroller::class, 'machine']);
 route::get('lotslist', [homecontroller::class, 'lotslist']);
 route::get('manufacturing', [homecontroller::class, 'manufacturing']);
 route::get('machinemanagement1', [homecontroller::class, 'machinemanagement1']);
@@ -244,7 +243,7 @@ route::get('clickstockdashboardstockloss', [stockdashbordcontroller::class, 'cli
 route::get('clickstockdashboardstock', [stockdashbordcontroller::class, 'clickstockdashboardstock']);
 
 // *********************seeds **************************************
-
+// route::get('search_seed',[seedcontroller::class,'searchseeds']);
 route::get('seeds1', [seedcontroller::class, 'seeds1']);
 route::get('seedPrint/{id}', [seedcontroller::class, 'seedPrint'])->name('seedPrint');
 route::get('multiPrint', [seedcontroller::class, 'multiPrint'])->name('multiPrint');
@@ -306,12 +305,14 @@ route::post('insertjangad', [jobworkcontroller::class, 'insertjangad']);
 
 
 // **********************************machine***********************************************
+route::get('machine', [machinecontroller::class, 'machine']);
+
 route::get('createmachine', [machinecontroller::class, 'createmachine']);
 route::post('insertmachine', [machinecontroller::class, 'insertmachine']);
 route::get('deletemachine/{id}', [machinecontroller::class, 'deletemachine']);
 // Route::get('changeStatus', [machinecontroller::class, 'changeStatus']);
 Route::get('/status/update',  [machinecontroller::class, 'updateStatus'])->name('users.update.status');
-
+route::get('search_machine',[machinecontroller::class,'searchmachine']);
 
 // ******************************************chocolate*************************************************************
 route::get('chocolatedashboard', [chocolatecontroller::class, 'chocolatedashboard']);

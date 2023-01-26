@@ -348,24 +348,89 @@
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
+
                     <div class="col-md-4 float-left">
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"> <i
-                                    class="fa-solid fa-download"></i> </button></a>
+                        {{-- <a href="{{ url('batch1') }}"><button type="button"
+                                class="btn btn-outline-secondary mt-1">Create</button></a> --}}
                     </div>
-                    <div class="col-md-7">
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i
-                                    class="fa-solid fa-filter"></i> Filter</button></a>
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i
-                                    class="fa-solid fa-keyboard"></i> Group By</button></a>
-                        <a href=""><button type="button" class="btn btn-outline-secondary mt-1"><i
-                                    class="fa-solid fa-star"></i> Favorites</button></a>
+                    <div class="col-md-7 d-flex">
+                        {{-- <li class="stockli nav-item dropdown filter">
+
+                            <a href="#" class="nav-link filter-btn">
+                                <button type="submit" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-filter"></i> Filter</button></a> --}}
+
+
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="fa-solid fa-filter"></i>
+                                Filter
+                            </button>
+                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                                <form action="{{ url('search_seed') }}" name="search" method="get">
+                                    <div class="search_multiple">
+                                        <select class="form__input" id="search" name="datesearch"
+                                            onchange="form.submit();">
+                                            <option selected disabled>SearchDate..</option>
+                                            <option value="today">Today</option>
+                                            <option value="yesterday">Yesterday</option>
+                                            <option value="last7days">Last 7 Days</option>
+                                            <option value="last15days">Last 15 Days</option>
+                                            <option value="lastmonth">Lastmonth</option>
+                                            <option value="lastyear">Lastyear</option>
+                                            <option value="thismonth">ThisMonth</option>
+                                        </select>
+                                        {{-- <select class="form__input" name="seed" id="search"
+                                            onchange="form.submit();">
+                                            <option selected disabled>selectName.</option>
+                                            @foreach ($samedata as $ans)
+                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                            @endforeach
+                                        </select> --}}
+
+                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        {{-- <div class="stockli nav-item dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-keyboard"></i>
+                                GroupBy
+                            </button>
+                            <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
+                                <form action="{{ url('search_seed') }}" name="search" method="get">
+                                    <div class="search_multiple">
+                                                            {{-- <select class="form__input" id="search" name="batchname" onchange="form.submit();">
+                                        <option selected disabled>selectName.</option>
+                                        @foreach ($data as $ans)
+                                        <option value="{{$ans->name}}">{{$ans->name}}</option>
+                                        @endforeach
+                                    </select> --}}
+                                        {{-- <select class="form__input" name="batchname" id="search"
+                                            onchange="form.submit();">
+                                            <option selected disabled>selectName.</option>
+                                            @foreach ($data as $ans)
+                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <input type="submit" class="form__btn" value="Filter" name="search">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>  --}}
+
+   
                     </div>
                     <div class="col-md-1 float-right">
+                        {{-- <a href="{{ url('createlot') }}"><button type="button" class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-arrows-to-dot"></i></button></a> --}}
                         <a href="{{ url('seeds1') }}"><button type="button"
                                 class="btn btn-outline-secondary mt-1"><i class="fa-solid fa-list"></i></button></a>
-                        <a href="{{ url('seedslist') }}"><button type="button"
-                                class="btn btn-outline-secondary mt-1"><i
-                                    class="fa-solid fa-arrows-to-dot"></i></button></a>
                     </div>
                 </div>
             </div>
