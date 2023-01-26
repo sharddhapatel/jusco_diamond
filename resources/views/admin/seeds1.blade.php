@@ -188,7 +188,8 @@
                                                     <select class="custom-select d-block w-100" name="batch_id"
                                                         required>
                                                         <option value="0">Please select</option>
-                                                        @foreach ($data as $ans)
+                                                        <?php $batch=App\Models\Bactch::get(); ?>
+                                                        @foreach ($batch as $ans)
                                                             <option value="{{ $ans->id }}">{{ $ans->name }}
                                                             </option>
                                                         @endforeach
@@ -367,28 +368,27 @@
                                 Filter
                             </button>
                             <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
-                                <form action="{{ url('search_seed') }}" name="search" method="get">
+                                <form action="{{ url('search_seed') }}"method="get">
                                     <div class="search_multiple">
-                                        <select class="form__input" id="search" name="datesearch"
-                                            onchange="form.submit();">
-                                            <option selected disabled>SearchDate..</option>
-                                            <option value="today">Today</option>
-                                            <option value="yesterday">Yesterday</option>
-                                            <option value="last7days">Last 7 Days</option>
-                                            <option value="last15days">Last 15 Days</option>
-                                            <option value="lastmonth">Lastmonth</option>
-                                            <option value="lastyear">Lastyear</option>
-                                            <option value="thismonth">ThisMonth</option>
-                                        </select>
-                                        {{-- <select class="form__input" name="seed" id="search"
-                                            onchange="form.submit();">
-                                            <option selected disabled>selectName.</option>
-                                            @foreach ($samedata as $ans)
-                                                <option value="{{ $ans->name }}">{{ $ans->name }}</option>
-                                            @endforeach
-                                        </select> --}}
-
-                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
+                                        {{-- <select class="form__input" id="search" name="datesearch"
+                                        onchange="form.submit();">
+                                        <option selected disabled>SearchDate..</option>
+                                        <option value="today">Today</option>
+                                        <option value="yesterday">Yesterday</option>
+                                        <option value="last7days">Last 7 Days</option>
+                                        <option value="last15days">Last 15 Days</option>
+                                        <option value="lastmonth">Lastmonth</option>
+                                        <option value="lastyear">Lastyear</option>
+                                        <option value="thismonth">ThisMonth</option>
+                                    </select> --}}
+                                        <select class="form__input" name="seedn" id="search"
+                                        onchange="form.submit();">
+                                        <option selected disabled>selectName</option>
+                                       <?php $users =App\Models\Bactch::select('name')->distinct()->get(); ?>
+                                        @foreach ($users as $ans)
+                                            <option value="{{ $ans->name }}">{{ $ans->name }}</option>
+                                        @endforeach
+                                    </select>
                                     </div>
                                 </form>
                             </div>
@@ -403,27 +403,23 @@
                                 GroupBy
                             </button>
                             <div class="dropdown-menu mt-5" aria-labelledby="dropdownMenuButton">
-                                <form action="{{ url('search_seed') }}" name="search" method="get">
+                                <form action="{{ url('search_seed') }}" method="get">
                                     <div class="search_multiple">
-                                                            {{-- <select class="form__input" id="search" name="batchname" onchange="form.submit();">
-                                        <option selected disabled>selectName.</option>
-                                        @foreach ($data as $ans)
-                                        <option value="{{$ans->name}}">{{$ans->name}}</option>
-                                        @endforeach
-                                    </select> --}}
-                                        {{-- <select class="form__input" name="batchname" id="search"
+                                                           
+                                       <select class="form__input" name="seedn" id="search"
                                             onchange="form.submit();">
-                                            <option selected disabled>selectName.</option>
-                                            @foreach ($data as $ans)
+                                            <option selected disabled>selectName</option>
+                                           <?php $users =App\Models\Bactch::select('name')->distinct()->get(); ?>
+                                            @foreach ($users as $ans)
                                                 <option value="{{ $ans->name }}">{{ $ans->name }}</option>
                                             @endforeach
                                         </select>
 
-                                        <input type="submit" class="form__btn" value="Filter" name="search">
-                                    </div>
+                                        {{-- <input type="submit" class="form__btn" value="Filter" name="search"> --}}
+                                    {{-- </div>
                                 </form>
                             </div>
-                        </div>  --}}
+                        </div>    --}}
 
    
                     </div>

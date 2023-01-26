@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\packet;
 use App\Models\Bactch;
 use Illuminate\Bus\Batch;
-
+use Illuminate\Support\Carbon;
 class seedcontroller extends Controller
 {
     // public function seeds1(){
@@ -34,7 +34,7 @@ class seedcontroller extends Controller
             return view('admin.multiPrints')->with(['datas'=>$datas,'random'=>rand(1111111111,9999999999)]);
     }
     public function seeds1(){
-        $data=DB::table('bactches')->get();
+        // $data=DB::table('bactches')->get();
         $sum=DB::table('packets')->sum('weight');
         $sumdivided=DB::table('packets')->sum('height');
         // $page= packet::paginate(10);
@@ -51,7 +51,7 @@ class seedcontroller extends Controller
         $samedata = DB::table('bactches')
         ->join('packets', 'packets.batch_id', '=', 'bactches.id')
         ->paginate(10);
-        return view('admin.seeds1')->with(['data'=>$data,'sum'=>$sum,'divided'=>$divided,'lenthdivided'=>$lenthdivided,'widthdivided'=>$widthdivided,'samedata'=>$samedata]);
+        return view('admin.seeds1')->with(['sum'=>$sum,'divided'=>$divided,'lenthdivided'=>$lenthdivided,'widthdivided'=>$widthdivided,'samedata'=>$samedata]);
        }
     
     public function insertseeds(Request $request)
@@ -93,6 +93,40 @@ class seedcontroller extends Controller
    }
        public function seedslist(){
         return view('admin.seedslist');
+       }
+       public function searchseeds(Request $request){
+     
+        $pro= $request->input('seedn');
+        $sum=DB::table('packets')->sum('weight');
+        $sumdivided=DB::table('packets')->sum('height');
+        
+        $count = DB::table('packets')->count();
+        if($count == 0){
+            $count = 1;
+        }
+        $divided=$sumdivided/$count;
+        round($divided,2);
+        $sumlenth=DB::table('packets')->sum('length'); 
+        $lenthdivided=$sumlenth/$count;
+        $sumwidth=DB::table('packets')->sum('width'); 
+        $widthdivided=$sumlenth/$count;
+        // dd($pro);
+       $samedata= DB::table('packets')   
+        ->join('bactches', 'packets.batch_id', '=', 'bactches.id')
+        ->select('packets.*', 'bactches.*')
+        ->distinct('name')->count('name');
+
+
+
+
+            
+        if ($request->seedn) {
+            // dd('hello');
+            $samedata = DB::table('packets')->join('bactches', 'packets.batch_id', '=', 'bactches.id')->where('name', "like", "%" . $pro . "%")->paginate(10);
+        }  else  {
+                    $samedata = DB::table('packets')->join('bactches'.'id','=','packets'.'batch_id')->paginate(10);
+                   } 
+        return view('admin.seeds1')->with(['samedata' => $samedata,'sum'=>$sum,'divided'=>$divided,'lenthdivided'=>$lenthdivided,'widthdivided'=>$widthdivided]);
        }
 }
 

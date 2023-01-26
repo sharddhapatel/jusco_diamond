@@ -243,7 +243,7 @@ route::get('clickstockdashboardstockloss', [stockdashbordcontroller::class, 'cli
 route::get('clickstockdashboardstock', [stockdashbordcontroller::class, 'clickstockdashboardstock']);
 
 // *********************seeds **************************************
-// route::get('search_seed',[seedcontroller::class,'searchseeds']);
+route::get('search_seed',[seedcontroller::class,'searchseeds']);
 route::get('seeds1', [seedcontroller::class, 'seeds1']);
 route::get('seedPrint/{id}', [seedcontroller::class, 'seedPrint'])->name('seedPrint');
 route::get('multiPrint', [seedcontroller::class, 'multiPrint'])->name('multiPrint');

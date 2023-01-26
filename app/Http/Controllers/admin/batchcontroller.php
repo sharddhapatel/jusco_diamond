@@ -167,7 +167,7 @@ class batchcontroller extends Controller
         } elseif ($search == "thismonth") {
             $data = DB::table('colors')->whereMonth('created_at', Carbon::now()->month)->paginate(10);
         } 
-        elseif ($request->shapn) {
+        elseif ($request->colorn) {
             $data = DB::table('colors')->where('name', "like", "%" . $pro . "%")->paginate(10);
         } 
 
